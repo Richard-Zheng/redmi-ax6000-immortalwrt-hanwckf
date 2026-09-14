@@ -1,1 +1,10 @@
 # redmi-ax6000-immortalwrt-hanwckf
+
+从 [immortalwrt-mt798x](https://github.com/hanwckf/immortalwrt-mt798x) 项目编译而来。[原作者的介绍](https://cmi.hanwckf.top/p/immortalwrt-mt798x/)。
+
+该仓库中 Redmi AX6000 的固件有[两个变种](https://github.com/hanwckf/immortalwrt-mt798x/blob/ba554197ed7e252fd3c1ee023621e1d1d009d323/target/linux/mediatek/image/mt7986.mk#L367-L397)
+
+- [原厂分区表 (stock layout)](https://github.com/hanwckf/immortalwrt-mt798x/blob/ba554197ed7e252fd3c1ee023621e1d1d009d323/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-xiaomi-redmi-router-ax6000-stock.dts)
+- [110m 分区表](https://github.com/hanwckf/immortalwrt-mt798x/blob/ba554197ed7e252fd3c1ee023621e1d1d009d323/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-xiaomi-redmi-router-ax6000.dts)
+
+都使用 NMBM 坏块管理，因此只支持被启用 NMBM 的 uboot 引导程序启动。（？存疑，目前只明确看到主线 OpenWrt/ImmortalWrt 未启用 NMBM 支持故无法使用 hanwckf 的 uboot 启动的说法）
