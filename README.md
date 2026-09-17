@@ -8,3 +8,18 @@
 - [110m 分区表](https://github.com/hanwckf/immortalwrt-mt798x/blob/ba554197ed7e252fd3c1ee023621e1d1d009d323/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-xiaomi-redmi-router-ax6000.dts)
 
 都使用 NMBM 坏块管理，因此只支持被启用 NMBM 的 uboot 引导程序启动。（？存疑，目前只明确看到主线 OpenWrt/ImmortalWrt 未启用 NMBM 支持故无法使用 hanwckf 的 uboot 启动的说法）
+
+## kmod-netlink-diag
+
+由于编译的时候没加上 kmod-netlink-diag 所以只能手动 insmod
+
+```sh
+mkdir -p /lib/modules/netlink-fix/
+cp /tmp/netlink_diag.ko /lib/modules/netlink-fix/
+```
+
+打开启动脚本 `/etc/rc.local` 加上这一行
+
+```
+insmod /lib/modules/netlink-fix/netlink_diag.ko
+```
