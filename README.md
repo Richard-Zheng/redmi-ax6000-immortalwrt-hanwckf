@@ -9,7 +9,7 @@
 
 都使用 NMBM 坏块管理，因此只支持被启用 NMBM 的 uboot 引导程序启动。（？存疑，目前只明确看到主线 OpenWrt/ImmortalWrt 未启用 NMBM 支持故无法使用 hanwckf 的 uboot 启动的说法）
 
-## kmod-netlink-diag
+## Kernel module hack
 
 由于编译的时候没加上 kmod-netlink-diag 所以只能手动 insmod
 
@@ -20,6 +20,8 @@ cp /tmp/netlink_diag.ko /lib/modules/netlink-fix/
 
 打开启动脚本 `/etc/rc.local` 加上这一行
 
-```
+```sh
 insmod /lib/modules/netlink-fix/netlink_diag.ko
 ```
+
+`mtd-rw.ko` 同理，用于刷写 uboot 时解锁 bl2 等分区的写入。
