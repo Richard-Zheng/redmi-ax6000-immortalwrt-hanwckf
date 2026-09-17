@@ -9,6 +9,28 @@
 
 都使用 NMBM 坏块管理，因此只支持被启用 NMBM 的 uboot 引导程序启动。（？存疑，目前只明确看到主线 OpenWrt/ImmortalWrt 未启用 NMBM 支持故无法使用 hanwckf 的 uboot 启动的说法）
 
+## Kernel vermagic
+
+安装 kmod 包经常出现不兼容，原因是 openwrt 编译的时候会计算一个 kernel vermagic
+
+在 openwrt 上查看：
+
+```sh
+opkg list-installed kernel
+```
+
+在编译目录查看编译出的内核的 vermagic
+
+```sh
+cat build_dir/target-aarch64_cortex-a53_musl/linux-mediatek_mt7986/linux-5.4.284/.vermagic
+```
+
+直接对着 `.config.set` 内核编译选项计算 vermagic
+
+```sh
+grep '=[ym]' .config.set | LC_ALL=C sort | md5sum | awk '{print $1}'
+```
+
 ## Kernel module hack
 
 由于编译的时候没加上 kmod-netlink-diag 所以只能手动 insmod
